@@ -1,0 +1,62 @@
+<ion-view view-title="AppShow">
+  <ion-content>
+
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+
+    <!--获取中间的数据-->
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="app in params.applications" type="item-text-wrap" href="#/tab/app/{{app.name}}">
+        <img ng-src="{{app.iconUrl}}">
+        <h2>{{app.name}}</h2>
+        <p>{{app.description}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(app)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+
+
+<!--&lt;!&ndash;方形的展示,类似collectionview,大图&ndash;&gt;-->
+    <!--<div class="row" ng-repeat="item in params.applications" ng-if="$index % 3 == 0" ng-init="itemIndex = $index">-->
+      <!--<div class="col col-33" ng-class="'wo-col-'+i" ng-repeat="i in [0,1,2]" ng-if="(itemIndex + i)<params.applications.length">-->
+        <!--<a class="wo-item" href="#/tab/app/{{item.name}}">-->
+          <!--<img class="wo-item-img" ng-src={{(params.applications)[itemIndex+i].iconUrl}} alt="">-->
+          <!--<p class="wo-item-title">{{(params.applications)[itemIndex+i].name}}</p>-->
+        <!--</a>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--方形的展示,类似collectionview,小图-->
+    <!--<div class="row" ng-repeat="item in params.applications" ng-if="$index % 3 == 0" ng-init="itemIndex = $index">-->
+      <!--<div class="col col-33" ng-class="'wo-col-'+i" ng-repeat="i in [0,1,2]" ng-if="(itemIndex + i)<params.applications.length">-->
+
+        <!--<a class="col item item-borderless cust_algin" href="#/tab/app/{{item.name}}">-->
+
+          <!--<img src="{{(params.applications)[itemIndex+i].iconUrl}}" class="maincontent-icon-cust"/>-->
+          <!--<p>{{(params.applications)[itemIndex+i].name}}</p>-->
+        <!--</a>-->
+
+        <!--&lt;!&ndash;<a class="wo-item" href="#/tab/app/{{item.name}}">&ndash;&gt;-->
+          <!--&lt;!&ndash;<img src="{{(params.applications)[itemIndex+i].iconUrl}}" class="maincontent-icon-cust"/>&ndash;&gt;-->
+          <!--&lt;!&ndash;<p>{{(params.applications)[itemIndex+i].name}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="list">-->
+      <!--<div class="row row-30" ng-repeat="app in params.applications" href="#/tab/app/{{app.name}}">-->
+        <!--<div class="col item item-borderless cust_algin">-->
+          <!--<img src="{{app.iconUrl}}" class="maincontent-icon-cust"/>-->
+          <!--<p>{{app.name}}</p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <ion-infinite-scroll ng-if="params.more" on-infinite="doLoadMore()"
+                         distance="5%"></ion-infinite-scroll>
+
+
+  </ion-content>
+</ion-view>
